@@ -69,6 +69,10 @@ exports.atualizarAgenda = async (req, res) => {
 
       const response = await db.query('update consulta  set horainic = $1,horafim = $2, data = $3,idpaciente =$4, idespecial = $5, idmedico = $6, valorpago = $7, pagou=$8, formapagamento = $9  where codigo  = $10', [ dadosAgenda.horainic, dadosAgenda.horafim,dadosAgenda.data,dadosAgenda.idpaciente,dadosAgenda.idespecial,dadosAgenda.idmedico,dadosAgenda.valorpago,dadosAgenda.pagou,dadosAgenda.formapagamento,dadosAgenda.codigo]);
       console.log(response)
+
+    
+      const response2 = await db.query('update agenda set idagenda =$1, horainicio =$2 , horafim =$3 ,diasemana = $4,idm =$5 ', [dadosAgenda.codigo, dadosAgenda.horainic, dadosAgenda.horafim,dadosAgenda.diasemana,dadosAgenda.crm]);
+      console.log(response2) 
     
       res.status(200).send({response});
   } catch (error) {
